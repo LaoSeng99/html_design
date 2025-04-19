@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background:#001424
+}
+
+.loader{
+    /*Loader size*/
+    position:relative;
+    width: 500px;
+    height: 500px;
+}
+
+.loader svg{
+    position:absolute;
+    top: 0;
+    left: 0;
+}
+
+.loader svg circle{
+    fill: none;
+    stroke:#fff; /*Circle color*/
+    stroke-width: 10px; /*Circle width*/
+    stroke-linecap: round;
+    animation : neon-circle-animate 2.5s linear infinite; 
+}
+
+/*Circle shadow*/
+.loader svg:nth-child(1) circle{
+    filter:blur(10px);
+    stroke:#ff6400
+}
+
+@keyframes neon-circle-animate {
+    0%{
+        stroke-dasharray: 315;
+        stroke-dashoffset: 315;
+    }
+    50%{
+        stroke-dasharray:315;
+        stroke-dashoffset: 0;
+    }
+    100%{
+        stroke-dasharray: 315;
+        stroke-dashoffset: -315; 
+    }
+}

@@ -1,0 +1,104 @@
+html {
+  color: #fff;
+}
+
+body {
+  background: #04060a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+  min-height: 100vh;
+}
+
+.card {
+  position: relative;
+  margin: 0 auto;
+  padding: 2em;
+  width: 300px;
+  background: #1c1f2b;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.content {
+  color: #b8b6b6;
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+.conic::after,
+.conic::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+
+  /*一个从中心点开始，颜色圆圈扩展*/
+  /* background-image: conic-gradient(#ff4545, #00ff99, #006aff, #ff0095, #ff4545); */
+
+  /* from degree 代表着 从哪里开始 */
+  /* from degree 可以做到一个流水线的感觉 */
+  background-image: conic-gradient(
+    from var(--angle),
+    transparent 70%,
+    #ff4545,
+    #00ff99,
+    #006aff,
+    #ff0095,
+    #ff4545
+  );
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  padding: 3px;
+  border-radius: 10px;
+  animation: 3s spin linear infinite;
+}
+
+.conic:before {
+  filter: blur(1.5rem);
+  opacity: 0.5;
+}
+
+@keyframes spin {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
+}
+
+.flow::before,
+.flow::after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  padding: 3px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #d2deff, #006aff, #d2deff);
+  background-size: 300% 100%; /* 让渐变背景比元素本身更宽，便于动画 */
+  animation: flowAnimation 3s linear infinite;
+}
+
+@keyframes flowAnimation {
+  0% {
+    background-position: 100% 0;
+  }
+  50% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
